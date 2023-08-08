@@ -9,7 +9,7 @@ class Counter extends Component {
     }
   }
 
-  plus = () => {
+  increment = () => {
     //setState - базовый реакт компонент
     this.setState((state) => {
     // Важно: используем `state` вместо `this.state` при обновлении.
@@ -17,7 +17,7 @@ class Counter extends Component {
     });
   }
 
-  minus = () => {
+  decrement = () => {
     this.setState((state) => {
       return {count: state.count - 1}
     });
@@ -27,9 +27,9 @@ class Counter extends Component {
     return (
       <div className='Counter'>
         <div className="wrapper">
-          <button onClick={this.minus} className='btn'>-</button>
+          <button onClick={this.decrement} className='btn'>-</button>
           <div className="output">{this.state.count}</div>
-          <button onClick={this.plus} className='btn'>+</button>
+          <button onClick={this.increment} className='btn'>+</button>
         </div>
       </div>
     )
