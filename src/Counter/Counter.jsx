@@ -24,6 +24,7 @@ class Counter extends Component {
   }
    
   render() {
+    console.log('render', this.state.count);
     return (
       <div className='Counter'>
         <div className="wrapper">
