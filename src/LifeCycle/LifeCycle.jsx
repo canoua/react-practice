@@ -12,10 +12,16 @@ class LifeCycle extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
+    // console.log('componentDidMount');
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
-      .then(data => this.setState({posts: data}))
+      .then(data => this.setState({posts: data, loading: false}))
+
+    this.timerId = setInterval(()=>{
+      fetch('https://jsonplaceholder.typicode.com/comments')
+        .then(response => response.json())
+        .then(data => this.setState({comments: data}))
+     }, 3000);
   }
 
   componentDidUpdate() {
@@ -24,13 +30,17 @@ class LifeCycle extends Component {
 
   componentWillUnmount() {
     console.log('componentWillUnmount');
+    clearInterval(this.timerId);
   }
    
   render() {
     console.log('render', this.state.count);
     return (
       <div className='LifeCycle'>
-        
+        {
+          //preloader
+          this.state.loading? <h3>loading</h3>: <h3>{this.state.posts.length} was loaded</h3>
+        }
       </div>
     )
   }
